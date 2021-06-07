@@ -1,0 +1,57 @@
+spring:
+  redis:
+    database: 0
+    host: 106.52.145.64
+    port: 9300
+    password: 828828
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://106.52.145.64:3306/coin?useUnicode=true&characterEncoding=UTF-8
+    username: tupelo
+    password: 940915
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#----DruidDataSourceConfig----------------------
+    # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+    initialSize: 5
+    # 最小连接池数量
+    minIdle: 5
+    # 最大连接池数量
+    maxActive: 20
+    # 获取连接时(超时)最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁。
+    maxWait: 10000
+    # 配置一个连接在池中的最小生存时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    # 1、关闭空闲连接的检测时间间隔；2、testWhileIdle的判断依据，单位是毫秒。默认60s
+    timeBetweenEvictionRunsMillis: 60000
+    # 用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
+    validationQuery: SELECT 1
+    # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+    testWhileIdle: true
+    # 申请连接时执行validationQuery检测连接是否有效
+    testOnBorrow: false
+    # 归还连接时执行validationQuery检测连接是否有效
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。【待验证】
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，监控统计用的stat，日志用的log4j，防御sql注入的wall
+    filters: stat,slf4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+    # 连接出错后再尝试连接次数，默认30
+    connectionErrorRetryAttempts: 3
+
+mybatis-plus:
+  # MyBatis Mapper 所对应的 XML 文件位置，  /mapper/*Mapper.xml
+  mapper-locations: classpath:mapper/**/*.xml
+  #MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名，注册后在 Mapper 对应的 XML 文件中可以直接使用类名，而不用使用全限定的类名(即 XML 中调用的时候不用包含包名)
+  type-aliases-package: com.deal.coin.entity    # 所有Entity别名类所在包
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 启动结果集自动映射（none,partial,full）
+    auto-mapping-behavior: partial
+    # 开启驼峰映射
+    map-underscore-to-camel-case: true
+

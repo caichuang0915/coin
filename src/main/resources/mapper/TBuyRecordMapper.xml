@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deal.coin.mapper.TBuyRecordMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.deal.coin.entity.TBuyRecord">
+		<id column="id" property="id" />
+		<result column="coin_name" property="coinName" />
+		<result column="buy_price" property="buyPrice" />
+		<result column="buy_num" property="buyNum" />
+		<result column="cash" property="cash" />
+		<result column="coin_num" property="coinNum" />
+		<result column="principal" property="principal" />
+		<result column="create_time" property="createTime" />
+		<result column="type" property="type" />
+		<result column="status" property="status" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, coin_name, buy_price, buy_num, cash, coin_num, principal, create_time, type, status
+    </sql>
+
+    <sql id="Base_Column_List2">
+t.id,t.coin_name,t.buy_price,t.buy_num,t.cash,t.coin_num,t.principal,t.create_time,t.type,t.status,
+    </sql>
+
+</mapper>

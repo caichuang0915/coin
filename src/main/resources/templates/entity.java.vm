@@ -1,0 +1,29 @@
+package ${package.Entity};
+
+import java.io.Serializable;
+import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+@TableName(value = "${table.name}",schema = "${cfg.schema}")
+public class ${entity} implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+## ----------  END 字段循环遍历  ----------
+
+## ----------  BEGIN 字段循环遍历  ----------
+#foreach($field in ${table.fields})
+
+    @TableField("${field.name}")
+    private ${field.propertyType} ${field.propertyName};
+#end
+## ----------  END 字段循环遍历  ----------
+}
